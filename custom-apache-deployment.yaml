@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-apache-deployment
+  namespace: ingress-nginx
+  labels:
+    app: custom-apache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom-apache
+  template:
+    metadata:
+      labels:
+        app: custom-apache
+    spec:
+      containers:
+      - name: custom-apache
+        image: theabdullahchaudhary/my-apache-server-with-love-message:latest
+        ports:
+        - containerPort: 80
+
